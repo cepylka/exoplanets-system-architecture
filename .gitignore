@@ -1,1 +1,7 @@
+star_pickles
+star_pickles_enriched
+
 .DS_Store
+
+*.png
+*.svg
