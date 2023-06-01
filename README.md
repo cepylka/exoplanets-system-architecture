@@ -2,10 +2,10 @@
 
 <!-- MarkdownTOC -->
 
-- Preparing the sample
-- Analyses of the sample
-    - System architecture: planet parameters similarities
-- Retrieving stellar parameters from GAIA Archive
+- [Preparing the sample](#preparing-the-sample)
+- [Analyses of the sample](#analyses-of-the-sample)
+    - [System architecture: planet parameters similarities](#system-architecture-planet-parameters-similarities)
+- [Retrieving stellar parameters from GAIA Archive](#retrieving-stellar-parameters-from-gaia-archive)
 
 <!-- /MarkdownTOC -->
 
