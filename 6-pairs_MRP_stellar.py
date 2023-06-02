@@ -2,10 +2,9 @@ import pathlib
 import pandas
 import numpy
 
-from uio.utility.files import pickle
 
 # original table
-tbl = pickle.openPickleAsPandasTable("./data/all_my_systems.pkl")
+tbl = pandas.read_pickle("./data/all_my_systems.pkl")
 
 # sorted table
 tblSorted = tbl.sort_values(["star_name", "period"], ascending=[True, True])

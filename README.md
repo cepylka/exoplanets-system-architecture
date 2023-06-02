@@ -5,11 +5,15 @@
 - [Preparing the sample](#preparing-the-sample)
 - [Analyses of the sample](#analyses-of-the-sample)
     - [System architecture: planet parameters similarities](#system-architecture-planet-parameters-similarities)
+- [Finding high correlated subsamples](#finding-high-correlated-subsamples)
+- [Bootstrap test](#bootstrap-test)
 - [Retrieving stellar parameters from GAIA Archive](#retrieving-stellar-parameters-from-gaia-archive)
 
 <!-- /MarkdownTOC -->
 
 ## Preparing the sample
+
+The Python module `uio.task` from [uio-exoplanet-group](https://github.com/retifrav/uio-exoplanet-group) (see the documentation [here](https://uio.decovar.dev) is used to prepare the sample.
 
 For retrieving information from databases initially we need a list of potentially interesting systems, which can be formed using the `1-get-systems-with-more-than-planets.py` script.
 
@@ -84,10 +88,10 @@ In the third part, the script will make "moving window" test for different stell
 For analysing periods ratio, you can create a new `.pkl` file from existing sample file `all_my_systems.pkl` by using `triples_MRPD.py`, which you can run in the terminal.
 
 ``` sh
-$ python ./triples_MRPD.py
+$ python ./7-triples_MRPD.py
 ```
 
-It will write a new file `triples_MR.pkl` in the `data` folder. The file consists now data for three adjacent planets in the system as one row in the pandas data frame.
+It will write a new file `MRP_data_sets_triples.pkl` in the `data` folder. The file consists now data for three adjacent planets in the system as one row in the pandas data frame.
 
 For analyses of similarity in parameters of adjacent planet triples, and for assessing how these similarity trends depend on stellar parameters, you can use the following script: `P_adjacent_planets.py`.
 
@@ -100,6 +104,19 @@ Analogously with the script for masses, radii and densities (`MRD_adjacent_plane
 Second, the script calculates the Pearson coefficient distributions from random uniform simulations from error intervals (10<sup>5</sup> attempts), and plots figures of R- and P-values distributions, the normal distribution function fitting along with the mean and median coefficient values and the standard deviation $\sigma$ value.
 
 After that, the script will make "moving window" test for different stellar parameters for sub-samples of x=40 data points with n=2 step. It will produce graphs of R- and P-value dynamics in stellar mass, radius, metallicity, T<sub>eff</sub> and age ranges.
+
+## Finding high correlated subsamples
+
+The script: `Correlation_Intervals.py` finds pairs with planets similar by a certain parameter, by removing values of parameter ratio farthest from the unity and forms the highly correlated subsamples of masses, radii, and densities in pairs and period ratios in triples with the Pearson R close to 0.95.
+
+``` sh
+$ python ./Correlation_Intervals.py
+```
+
+## Bootstrap test
+
+The Jupyter notebook `./notebooks/Density pairs with errors.ipynb` plots the density subsample, hepls to compare high-correlated subsamples among systems with analogous stellar parameters and one random 40-pairs subsample from the main sample by their corresponding Pearson Rs, and, finally, plots the R distribution, 10000 times bootstrapping the random 40-pairs subsamples from the main sample.
+
 
 ## Retrieving stellar parameters from GAIA Archive
 
@@ -137,7 +154,3 @@ References:
 
 <a name="Fouesneau"></a>Fouesneau, M. et al. (2022) ‘Gaia Data Release 3. Apsis II: Stellar parameters’, Astronomy & Astrophysics [Preprint]. Available at: https://doi.org/10.1051/0004-6361/202243919.
 
-<a name="Kopparapu"></a> Kopparapu, R. K., Ramirez, R. M., SchottelKotte, J., Kasting, J. F., Domagal-Goldman, S. and Eymet, V. (2014). "Habitable zones around main-sequence stars: dependence
-on planetary mass". In: The Astrophysical Journal Letters vol. 787, no. 2, p. L29.
-
-<a name="Zeng"></a> Zeng, L., Jacobsen, S. B., Sasselov, D. D., Petaev, M. I., Vanderburg, A., Lopez-Morales, M., Perez-Mercader, J., Mattsson, T. R., Li, G., Heising, M. Z. et al. (2019). "Growth model interpretation of planet size distribution". In: Proceedings of the National Academy of Sciences vol. 116, no. 20, pp. 9723–9728.
