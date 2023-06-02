@@ -121,8 +121,7 @@ The Jupyter notebook `./notebooks/Density pairs with errors.ipynb` plots the den
 ## Retrieving stellar parameters from GAIA Archive
 
 <!-- ### System architecture: planet parameters similarities -->
-The python module `uio._task` \href{https://github.com/retifrav/uio-exoplanet-group}{
-uio-exoplanet-group} is used for retrieving certain stellar parameters from GAIA DR3 release [Fouesneau et al., 2022](#Fouesneau).
+The python module [uio-exoplanet-group](https://github.com/retifrav/uio-exoplanet-group) is used for retrieving certain stellar parameters from GAIA DR3 release [Fouesneau et al., 2022](#Fouesneau).
 
 ```
 from uio._tasks import reconfirming_stellar_parameters
